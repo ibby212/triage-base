@@ -1,7 +1,8 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { getLlmConfig } from "./config";
+import { getDmConfig, getLlmConfig } from "./config";
 import { loadDataset, sample, ticketText } from "./data";
+import { DM_QUESTIONS_VERSION } from "./dm";
 import { AppError } from "./errors";
 import { saveRun } from "./log";
 import { PROMPT_VERSION } from "./prompt";
@@ -92,15 +93,24 @@ function bump(matrix: Record<string, Record<string, number>>, expected: string, 
 
 export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
   const { dataset, strategy, config } = request;
-  if (!getLlmConfig(config)) {
+  if (strategy !== "dm" && !getLlmConfig(config)) {
     throw new AppError("not_configured", { message: `Unknown model configuration "${config}".` });
+  }
+  if (strategy !== "llm" && !getDmConfig()) {
+    throw new AppError("not_configured", {
+      message: "The decision model is not configured: set DM_API_KEY in .env.local and restart the server.",
+    });
   }
 
   const runId = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19) + "-" + randomUUID().slice(0, 4);
   const tickets = sample(await loadDataset(dataset), request.sample);
   const labelled = dataset === "labelled100";
   const started = performance.now();
-  const waitTurn = pacer(getLlmConfig(config)?.maxRpm ?? 0);
+  const llmRpm = strategy === "dm" ? 0 : (getLlmConfig(config)?.maxRpm ?? 0);
+  const dmRpm = strategy === "llm" ? 0 : (getDmConfig()?.maxRpm ?? 0);
+  const limits = [llmRpm, dmRpm].filter((n) => n > 0);
+  const waitTurn = pacer(limits.length ? Math.min(...limits) : 0);
+  let dmModel: string | null = null;
 
   const rows = await mapLimit(tickets, CONCURRENCY, async (ticket): Promise<SmokeRow> => {
     const expected = labelled && ticket.category && ticket.priority
@@ -132,6 +142,7 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
           await sleep(10_000 * (attempt + 1));
         }
       }
+      dmModel ??= result.meta.dm_model;
       const predicted = { category: result.triage.category, priority: result.triage.priority };
       return {
         ...base, outcome: "ok", status: 200, predicted,
@@ -175,8 +186,9 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
   }
 
   const latencies = rows.filter((r) => r.status !== 400).map((r) => r.latency_ms).sort((a, b) => a - b);
-  const llmConfig = getLlmConfig(config);
-  const promptVersion = PROMPT_VERSION;
+  const llmConfig = strategy === "dm" ? null : getLlmConfig(config);
+  const promptVersion =
+    strategy === "llm" ? PROMPT_VERSION : strategy === "dm" ? DM_QUESTIONS_VERSION : `${DM_QUESTIONS_VERSION}+${PROMPT_VERSION}`;
 
   const run: SmokeRun = {
     run_id: runId,
@@ -184,10 +196,10 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
     dataset,
     sample_size: tickets.length,
     strategy,
-    config,
+    config: strategy === "dm" ? "-" : config,
     config_label: llmConfig?.label ?? null,
     llm_model: llmConfig?.model ?? null,
-    dm_model: null,
+    dm_model: strategy === "llm" ? null : (dmModel ?? getDmConfig()?.model ?? null),
     prompt_version: promptVersion,
     outcomes,
     labelled,

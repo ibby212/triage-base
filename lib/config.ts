@@ -18,6 +18,14 @@ export type LlmConfig = {
   maxRpm: number;
 };
 
+export type DmConfig = {
+  baseURL: string;
+  apiKey: string;
+  model: string;
+  priceInputPerM: number;
+  maxRpm: number;
+};
+
 function num(value: string | undefined): number {
   const n = Number(value);
   return Number.isFinite(n) && n >= 0 ? n : 0;
@@ -52,9 +60,23 @@ export function getLlmConfig(name: string): LlmConfig | null {
   return getLlmConfigs().find((c) => c.name === name) ?? null;
 }
 
+export function getDmConfig(): DmConfig | null {
+  const env = process.env;
+  if (!env.DM_API_KEY) return null;
+  return {
+    baseURL: (env.DM_BASE_URL || "https://decision.vllm-sr.ai").replace(/\/+$/, ""),
+    apiKey: env.DM_API_KEY,
+    model: env.DM_MODEL || "vllm-sr/d3-flash",
+    priceInputPerM: num(env.DM_PRICE_INPUT_PER_M),
+    maxRpm: num(env.DM_MAX_RPM),
+  };
+}
+
 // Safe to send to the browser: names, labels and model ids only.
 export function publicConfigInfo() {
+  const dm = getDmConfig();
   return {
     llm: getLlmConfigs().map((c) => ({ name: c.name, label: c.label, model: c.model })),
+    dm: dm ? { model: dm.model } : null,
   };
 }
