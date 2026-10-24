@@ -18,12 +18,13 @@ export default function ChatPage() {
     event.preventDefault();
     if (isSending || !text.trim()) return;
 
+    // LLM APIs are stateless: the page keeps the conversation and resends all of it.
     const history: Message[] = [...messages, { role: "user", content: text }];
     setIsSending(true);
     setError(null);
 
     try {
-      const { ok, data } = await postJson("/api/chat", { messages: [{ role: "user", content: text }] });
+      const { ok, data } = await postJson("/api/chat", { messages: history });
       if (!ok) throw new Error(errorMessage(data, "Unable to send your message. Please try again."));
       if (typeof data !== "object" || data === null || !("answer" in data) || typeof data.answer !== "string") {
         throw new Error("The server returned an invalid reply. Please try again.");
@@ -42,7 +43,7 @@ export default function ChatPage() {
   return (
     <main className="page">
       <h1>Support chat</h1>
-      <p className="muted">Ask a question to the configured model.</p>
+      <p className="muted">The conversation lives in this page only. Reloading clears it.</p>
       <div className="row">
         <button type="button" className="secondary" onClick={() => setMessages([])} disabled={isSending || !messages.length}>
           Clear chat
