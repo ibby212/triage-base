@@ -1,0 +1,2071 @@
+{
+  "run_id": "2026-10-24T12-40-36-5003",
+  "ts": "2026-10-24T12:47:39.371Z",
+  "dataset": "labelled100",
+  "sample_size": 100,
+  "strategy": "dm+llm",
+  "config": "default",
+  "config_label": "Gemini 3.1 Flash Lite",
+  "llm_model": "gemini-3.1-flash-lite-preview",
+  "dm_model": "vllm-sr/d3-flash",
+  "prompt_version": "dm-questions-v1+triage-v2",
+  "outcomes": {
+    "ok": 99,
+    "invalid_request": 1
+  },
+  "labelled": true,
+  "accuracy": {
+    "category": 0.898989898989899,
+    "priority": 0.7171717171717171,
+    "both": 0.6262626262626263
+  },
+  "mismatches": {
+    "category": 10,
+    "priority": 28
+  },
+  "confusion": {
+    "category": {
+      "technical_bug": {
+        "technical_bug": 30,
+        "feature_request": 1
+      },
+      "account": {
+        "account": 16,
+        "technical_bug": 7
+      },
+      "billing": {
+        "billing": 23,
+        "technical_bug": 1
+      },
+      "feature_request": {
+        "feature_request": 20,
+        "technical_bug": 1
+      }
+    },
+    "priority": {
+      "low": {
+        "low": 36
+      },
+      "medium": {
+        "medium": 21,
+        "low": 18,
+        "high": 4
+      },
+      "high": {
+        "high": 14,
+        "medium": 6
+      }
+    }
+  },
+  "latency_ms": {
+    "avg": 5451,
+    "p50": 3025,
+    "p95": 22868,
+    "wall": 422849
+  },
+  "tokens": {
+    "input": 106313,
+    "output": 8456,
+    "total": 114769
+  },
+  "cost_usd": 0.008884500000000002,
+  "rows": [
+    {
+      "ticket_id": "TCK-10171",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2240,
+      "input_tokens": 994,
+      "output_tokens": 64,
+      "cost_usd": 0.0000786
+    },
+    {
+      "ticket_id": "TCK-10490",
+      "tags": "long|has_pii",
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1691,
+      "input_tokens": 2752,
+      "output_tokens": 90,
+      "cost_usd": 0.0001474
+    },
+    {
+      "ticket_id": "TCK-10131",
+      "tags": "adversarial|prompt_injection",
+      "expected": {
+        "category": "account",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1263,
+      "input_tokens": 963,
+      "output_tokens": 67,
+      "cost_usd": 0.0000787
+    },
+    {
+      "ticket_id": "TCK-10162",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1919,
+      "input_tokens": 974,
+      "output_tokens": 85,
+      "cost_usd": 0.00008620000000000001
+    },
+    {
+      "ticket_id": "TCK-10019",
+      "tags": "long",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1721,
+      "input_tokens": 2871,
+      "output_tokens": 102,
+      "cost_usd": 0.00015610000000000003
+    },
+    {
+      "ticket_id": "TCK-10321",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1849,
+      "input_tokens": 988,
+      "output_tokens": 93,
+      "cost_usd": 0.00008980000000000001
+    },
+    {
+      "ticket_id": "TCK-10396",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 9881,
+      "input_tokens": 944,
+      "output_tokens": 90,
+      "cost_usd": 0.00008740000000000001
+    },
+    {
+      "ticket_id": "TCK-10274",
+      "tags": "ambiguous|tone_mismatch",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3181,
+      "input_tokens": 971,
+      "output_tokens": 99,
+      "cost_usd": 0.00009190000000000001
+    },
+    {
+      "ticket_id": "TCK-10168",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3352,
+      "input_tokens": 1072,
+      "output_tokens": 94,
+      "cost_usd": 0.000093
+    },
+    {
+      "ticket_id": "TCK-10357",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 6290,
+      "input_tokens": 988,
+      "output_tokens": 100,
+      "cost_usd": 0.0000928
+    },
+    {
+      "ticket_id": "TCK-10473",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 2298,
+      "input_tokens": 1019,
+      "output_tokens": 107,
+      "cost_usd": 0.0000965
+    },
+    {
+      "ticket_id": "TCK-10234",
+      "tags": "has_pii",
+      "expected": {
+        "category": "account",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 2452,
+      "input_tokens": 1202,
+      "output_tokens": 97,
+      "cost_usd": 0.00009860000000000001
+    },
+    {
+      "ticket_id": "TCK-10308",
+      "tags": "long|exceeds_5000_chars",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "invalid_request",
+      "status": 400,
+      "predicted": null,
+      "category_match": null,
+      "priority_match": null,
+      "latency_ms": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "ticket_id": "TCK-10051",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 4482,
+      "input_tokens": 989,
+      "output_tokens": 79,
+      "cost_usd": 0.00008430000000000002
+    },
+    {
+      "ticket_id": "TCK-10340",
+      "tags": "adversarial|prompt_injection",
+      "expected": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1967,
+      "input_tokens": 930,
+      "output_tokens": 78,
+      "cost_usd": 0.000082
+    },
+    {
+      "ticket_id": "TCK-10196",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 22357,
+      "input_tokens": 965,
+      "output_tokens": 78,
+      "cost_usd": 0.00008310000000000001
+    },
+    {
+      "ticket_id": "TCK-10178",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 1972,
+      "input_tokens": 977,
+      "output_tokens": 81,
+      "cost_usd": 0.0000849
+    },
+    {
+      "ticket_id": "TCK-10400",
+      "tags": "noisy",
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 2695,
+      "input_tokens": 1003,
+      "output_tokens": 78,
+      "cost_usd": 0.00008430000000000002
+    },
+    {
+      "ticket_id": "TCK-10097",
+      "tags": "tone_mismatch",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 5994,
+      "input_tokens": 1068,
+      "output_tokens": 98,
+      "cost_usd": 0.00009480000000000001
+    },
+    {
+      "ticket_id": "TCK-10040",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1923,
+      "input_tokens": 1001,
+      "output_tokens": 89,
+      "cost_usd": 0.0000887
+    },
+    {
+      "ticket_id": "TCK-10066",
+      "tags": "noisy",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2008,
+      "input_tokens": 928,
+      "output_tokens": 75,
+      "cost_usd": 0.00008080000000000001
+    },
+    {
+      "ticket_id": "TCK-10117",
+      "tags": "tone_mismatch|noisy",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 5319,
+      "input_tokens": 1059,
+      "output_tokens": 86,
+      "cost_usd": 0.0000895
+    },
+    {
+      "ticket_id": "TCK-10229",
+      "tags": "multilingual",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2768,
+      "input_tokens": 971,
+      "output_tokens": 74,
+      "cost_usd": 0.00008190000000000001
+    },
+    {
+      "ticket_id": "TCK-10365",
+      "tags": "has_pii",
+      "expected": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2436,
+      "input_tokens": 1149,
+      "output_tokens": 103,
+      "cost_usd": 0.00009930000000000001
+    },
+    {
+      "ticket_id": "TCK-10035",
+      "tags": "adversarial|prompt_injection",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 3186,
+      "input_tokens": 955,
+      "output_tokens": 85,
+      "cost_usd": 0.00008570000000000001
+    },
+    {
+      "ticket_id": "TCK-10106",
+      "tags": "ambiguous",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3025,
+      "input_tokens": 947,
+      "output_tokens": 100,
+      "cost_usd": 0.0000915
+    },
+    {
+      "ticket_id": "TCK-10256",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 32223,
+      "input_tokens": 1120,
+      "output_tokens": 106,
+      "cost_usd": 0.00009960000000000001
+    },
+    {
+      "ticket_id": "TCK-10431",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2190,
+      "input_tokens": 1056,
+      "output_tokens": 114,
+      "cost_usd": 0.0001004
+    },
+    {
+      "ticket_id": "TCK-10303",
+      "tags": "adversarial|prompt_injection",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 4152,
+      "input_tokens": 957,
+      "output_tokens": 80,
+      "cost_usd": 0.0000839
+    },
+    {
+      "ticket_id": "TCK-10024",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 4018,
+      "input_tokens": 1030,
+      "output_tokens": 76,
+      "cost_usd": 0.00008460000000000001
+    },
+    {
+      "ticket_id": "TCK-10286",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 1209,
+      "input_tokens": 1009,
+      "output_tokens": 78,
+      "cost_usd": 0.0000845
+    },
+    {
+      "ticket_id": "TCK-10049",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3110,
+      "input_tokens": 996,
+      "output_tokens": 83,
+      "cost_usd": 0.00008620000000000001
+    },
+    {
+      "ticket_id": "TCK-10337",
+      "tags": "adversarial|prompt_injection|multilingual",
+      "expected": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1331,
+      "input_tokens": 924,
+      "output_tokens": 62,
+      "cost_usd": 0.0000752
+    },
+    {
+      "ticket_id": "TCK-10459",
+      "tags": "multilingual",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 5190,
+      "input_tokens": 942,
+      "output_tokens": 74,
+      "cost_usd": 0.00008080000000000001
+    },
+    {
+      "ticket_id": "TCK-10410",
+      "tags": "ambiguous|secrets_in_ticket|has_pii",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1485,
+      "input_tokens": 1038,
+      "output_tokens": 98,
+      "cost_usd": 0.000094
+    },
+    {
+      "ticket_id": "TCK-10096",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 2427,
+      "input_tokens": 991,
+      "output_tokens": 92,
+      "cost_usd": 0.00008970000000000001
+    },
+    {
+      "ticket_id": "TCK-10172",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 1858,
+      "input_tokens": 1016,
+      "output_tokens": 86,
+      "cost_usd": 0.0000882
+    },
+    {
+      "ticket_id": "TCK-10385",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 1971,
+      "input_tokens": 998,
+      "output_tokens": 83,
+      "cost_usd": 0.0000864
+    },
+    {
+      "ticket_id": "TCK-10001",
+      "tags": "has_pii",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 985,
+      "input_tokens": 1091,
+      "output_tokens": 85,
+      "cost_usd": 0.0000901
+    },
+    {
+      "ticket_id": "TCK-10125",
+      "tags": "noisy",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2901,
+      "input_tokens": 952,
+      "output_tokens": 78,
+      "cost_usd": 0.00008280000000000001
+    },
+    {
+      "ticket_id": "TCK-10033",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 1504,
+      "input_tokens": 981,
+      "output_tokens": 100,
+      "cost_usd": 0.0000925
+    },
+    {
+      "ticket_id": "TCK-10403",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1832,
+      "input_tokens": 997,
+      "output_tokens": 67,
+      "cost_usd": 0.0000797
+    },
+    {
+      "ticket_id": "TCK-10339",
+      "tags": "ambiguous|insufficient_info",
+      "expected": {
+        "category": "account",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 22868,
+      "input_tokens": 905,
+      "output_tokens": 77,
+      "cost_usd": 0.0000807
+    },
+    {
+      "ticket_id": "TCK-10150",
+      "tags": "has_pii",
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 10764,
+      "input_tokens": 1039,
+      "output_tokens": 81,
+      "cost_usd": 0.00008690000000000001
+    },
+    {
+      "ticket_id": "TCK-10434",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 4944,
+      "input_tokens": 1009,
+      "output_tokens": 70,
+      "cost_usd": 0.00008130000000000001
+    },
+    {
+      "ticket_id": "TCK-10142",
+      "tags": "noisy",
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 4552,
+      "input_tokens": 984,
+      "output_tokens": 90,
+      "cost_usd": 0.0000886
+    },
+    {
+      "ticket_id": "TCK-10109",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 4178,
+      "input_tokens": 951,
+      "output_tokens": 76,
+      "cost_usd": 0.00008190000000000001
+    },
+    {
+      "ticket_id": "TCK-10442",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 2475,
+      "input_tokens": 1003,
+      "output_tokens": 88,
+      "cost_usd": 0.0000885
+    },
+    {
+      "ticket_id": "TCK-10312",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 1621,
+      "input_tokens": 1005,
+      "output_tokens": 97,
+      "cost_usd": 0.0000921
+    },
+    {
+      "ticket_id": "TCK-10384",
+      "tags": "tone_mismatch",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 4863,
+      "input_tokens": 1088,
+      "output_tokens": 82,
+      "cost_usd": 0.00008880000000000002
+    },
+    {
+      "ticket_id": "TCK-10219",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 2306,
+      "input_tokens": 981,
+      "output_tokens": 102,
+      "cost_usd": 0.00009310000000000001
+    },
+    {
+      "ticket_id": "TCK-10360",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 33668,
+      "input_tokens": 980,
+      "output_tokens": 82,
+      "cost_usd": 0.00008520000000000001
+    },
+    {
+      "ticket_id": "TCK-10038",
+      "tags": "noisy",
+      "expected": {
+        "category": "account",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 8906,
+      "input_tokens": 985,
+      "output_tokens": 73,
+      "cost_usd": 0.00008190000000000001
+    },
+    {
+      "ticket_id": "TCK-10058",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1932,
+      "input_tokens": 973,
+      "output_tokens": 75,
+      "cost_usd": 0.00008209999999999999
+    },
+    {
+      "ticket_id": "TCK-10354",
+      "tags": "has_pii",
+      "expected": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 5490,
+      "input_tokens": 1055,
+      "output_tokens": 92,
+      "cost_usd": 0.00009170000000000002
+    },
+    {
+      "ticket_id": "TCK-10402",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 1778,
+      "input_tokens": 1067,
+      "output_tokens": 79,
+      "cost_usd": 0.00008690000000000001
+    },
+    {
+      "ticket_id": "TCK-10148",
+      "tags": "adversarial|prompt_injection|html_injection",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1689,
+      "input_tokens": 939,
+      "output_tokens": 62,
+      "cost_usd": 0.0000761
+    },
+    {
+      "ticket_id": "TCK-10014",
+      "tags": "multilingual",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 13904,
+      "input_tokens": 936,
+      "output_tokens": 85,
+      "cost_usd": 0.000085
+    },
+    {
+      "ticket_id": "TCK-10140",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1638,
+      "input_tokens": 955,
+      "output_tokens": 77,
+      "cost_usd": 0.0000825
+    },
+    {
+      "ticket_id": "TCK-10267",
+      "tags": "adversarial|prompt_injection|sql_injection",
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3270,
+      "input_tokens": 924,
+      "output_tokens": 76,
+      "cost_usd": 0.000081
+    },
+    {
+      "ticket_id": "TCK-10272",
+      "tags": "has_pii",
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 4338,
+      "input_tokens": 1138,
+      "output_tokens": 90,
+      "cost_usd": 0.00009380000000000002
+    },
+    {
+      "ticket_id": "TCK-10023",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 1968,
+      "input_tokens": 993,
+      "output_tokens": 83,
+      "cost_usd": 0.0000859
+    },
+    {
+      "ticket_id": "TCK-10482",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 9975,
+      "input_tokens": 986,
+      "output_tokens": 103,
+      "cost_usd": 0.00009380000000000002
+    },
+    {
+      "ticket_id": "TCK-10250",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1542,
+      "input_tokens": 1000,
+      "output_tokens": 73,
+      "cost_usd": 0.0000822
+    },
+    {
+      "ticket_id": "TCK-10200",
+      "tags": "multilingual",
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 28764,
+      "input_tokens": 1096,
+      "output_tokens": 93,
+      "cost_usd": 0.00009340000000000001
+    },
+    {
+      "ticket_id": "TCK-10450",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1515,
+      "input_tokens": 1007,
+      "output_tokens": 73,
+      "cost_usd": 0.0000825
+    },
+    {
+      "ticket_id": "TCK-10210",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 17523,
+      "input_tokens": 1073,
+      "output_tokens": 90,
+      "cost_usd": 0.00009130000000000001
+    },
+    {
+      "ticket_id": "TCK-10333",
+      "tags": "ambiguous",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 2162,
+      "input_tokens": 958,
+      "output_tokens": 84,
+      "cost_usd": 0.0000854
+    },
+    {
+      "ticket_id": "TCK-10157",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1969,
+      "input_tokens": 1085,
+      "output_tokens": 100,
+      "cost_usd": 0.0000959
+    },
+    {
+      "ticket_id": "TCK-10470",
+      "tags": "multilingual",
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 33424,
+      "input_tokens": 1068,
+      "output_tokens": 82,
+      "cost_usd": 0.00008820000000000002
+    },
+    {
+      "ticket_id": "TCK-10448",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 9601,
+      "input_tokens": 986,
+      "output_tokens": 87,
+      "cost_usd": 0.00008740000000000001
+    },
+    {
+      "ticket_id": "TCK-10329",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 2243,
+      "input_tokens": 998,
+      "output_tokens": 94,
+      "cost_usd": 0.00009080000000000001
+    },
+    {
+      "ticket_id": "TCK-10310",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 7458,
+      "input_tokens": 970,
+      "output_tokens": 80,
+      "cost_usd": 0.000084
+    },
+    {
+      "ticket_id": "TCK-10491",
+      "tags": "long",
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 1452,
+      "input_tokens": 2558,
+      "output_tokens": 98,
+      "cost_usd": 0.00014419999999999998
+    },
+    {
+      "ticket_id": "TCK-10404",
+      "tags": "has_pii",
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2082,
+      "input_tokens": 1102,
+      "output_tokens": 73,
+      "cost_usd": 0.00008560000000000001
+    },
+    {
+      "ticket_id": "TCK-10476",
+      "tags": "has_pii",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3714,
+      "input_tokens": 1107,
+      "output_tokens": 84,
+      "cost_usd": 0.0000899
+    },
+    {
+      "ticket_id": "TCK-10348",
+      "tags": "multilingual|has_pii|noisy",
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3993,
+      "input_tokens": 1016,
+      "output_tokens": 79,
+      "cost_usd": 0.000085
+    },
+    {
+      "ticket_id": "TCK-10188",
+      "tags": "has_pii",
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 2063,
+      "input_tokens": 1007,
+      "output_tokens": 77,
+      "cost_usd": 0.00008410000000000001
+    },
+    {
+      "ticket_id": "TCK-10260",
+      "tags": "has_pii",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 2976,
+      "input_tokens": 1131,
+      "output_tokens": 90,
+      "cost_usd": 0.0000937
+    },
+    {
+      "ticket_id": "TCK-10155",
+      "tags": "has_pii",
+      "expected": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 3051,
+      "input_tokens": 1190,
+      "output_tokens": 112,
+      "cost_usd": 0.00010380000000000002
+    },
+    {
+      "ticket_id": "TCK-10034",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 3397,
+      "input_tokens": 981,
+      "output_tokens": 94,
+      "cost_usd": 0.0000901
+    },
+    {
+      "ticket_id": "TCK-10420",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 10686,
+      "input_tokens": 978,
+      "output_tokens": 82,
+      "cost_usd": 0.00008520000000000001
+    },
+    {
+      "ticket_id": "TCK-10127",
+      "tags": "ambiguous|no_natural_category",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 8592,
+      "input_tokens": 949,
+      "output_tokens": 83,
+      "cost_usd": 0.0000847
+    },
+    {
+      "ticket_id": "TCK-10194",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 4711,
+      "input_tokens": 979,
+      "output_tokens": 60,
+      "cost_usd": 0.0000765
+    },
+    {
+      "ticket_id": "TCK-10276",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 7451,
+      "input_tokens": 1078,
+      "output_tokens": 84,
+      "cost_usd": 0.0000894
+    },
+    {
+      "ticket_id": "TCK-10460",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1630,
+      "input_tokens": 908,
+      "output_tokens": 90,
+      "cost_usd": 0.000086
+    },
+    {
+      "ticket_id": "TCK-10376",
+      "tags": "long",
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 3487,
+      "input_tokens": 2454,
+      "output_tokens": 98,
+      "cost_usd": 0.00014060000000000003
+    },
+    {
+      "ticket_id": "TCK-10421",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 3154,
+      "input_tokens": 1012,
+      "output_tokens": 88,
+      "cost_usd": 0.00008860000000000001
+    },
+    {
+      "ticket_id": "TCK-10017",
+      "tags": "ambiguous",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": false,
+      "priority_match": false,
+      "latency_ms": 3311,
+      "input_tokens": 988,
+      "output_tokens": 83,
+      "cost_usd": 0.00008620000000000001
+    },
+    {
+      "ticket_id": "TCK-10317",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 7937,
+      "input_tokens": 1041,
+      "output_tokens": 81,
+      "cost_usd": 0.00008690000000000001
+    },
+    {
+      "ticket_id": "TCK-10445",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1550,
+      "input_tokens": 1000,
+      "output_tokens": 84,
+      "cost_usd": 0.00008680000000000001
+    },
+    {
+      "ticket_id": "TCK-10414",
+      "tags": "adversarial|prompt_injection",
+      "expected": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 9501,
+      "input_tokens": 883,
+      "output_tokens": 74,
+      "cost_usd": 0.00007890000000000001
+    },
+    {
+      "ticket_id": "TCK-10102",
+      "tags": null,
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 1832,
+      "input_tokens": 996,
+      "output_tokens": 77,
+      "cost_usd": 0.00008360000000000001
+    },
+    {
+      "ticket_id": "TCK-10369",
+      "tags": "noisy",
+      "expected": {
+        "category": "billing",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "billing",
+        "priority": "high"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 6793,
+      "input_tokens": 1053,
+      "output_tokens": 89,
+      "cost_usd": 0.0000905
+    },
+    {
+      "ticket_id": "TCK-10056",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "high"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 2071,
+      "input_tokens": 998,
+      "output_tokens": 94,
+      "cost_usd": 0.00009059999999999999
+    },
+    {
+      "ticket_id": "TCK-10222",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 6286,
+      "input_tokens": 1036,
+      "output_tokens": 86,
+      "cost_usd": 0.00008880000000000002
+    },
+    {
+      "ticket_id": "TCK-10099",
+      "tags": null,
+      "expected": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 9475,
+      "input_tokens": 958,
+      "output_tokens": 85,
+      "cost_usd": 0.00008580000000000001
+    },
+    {
+      "ticket_id": "TCK-10104",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": false,
+      "latency_ms": 1705,
+      "input_tokens": 1023,
+      "output_tokens": 108,
+      "cost_usd": 0.0000971
+    },
+    {
+      "ticket_id": "TCK-10387",
+      "tags": null,
+      "expected": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": true,
+      "priority_match": true,
+      "latency_ms": 4998,
+      "input_tokens": 945,
+      "output_tokens": 74,
+      "cost_usd": 0.0000809
+    },
+    {
+      "ticket_id": "TCK-10254",
+      "tags": null,
+      "expected": {
+        "category": "account",
+        "priority": "medium"
+      },
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": false,
+      "priority_match": true,
+      "latency_ms": 1744,
+      "input_tokens": 1027,
+      "output_tokens": 79,
+      "cost_usd": 0.00008570000000000001
+    }
+  ]
+}

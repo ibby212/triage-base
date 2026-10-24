@@ -1,0 +1,96 @@
+{
+  "run_id": "2026-10-24T12-55-14-8499",
+  "ts": "2026-10-24T12:55:18.298Z",
+  "dataset": "all500",
+  "sample_size": 3,
+  "strategy": "dm",
+  "config": "-",
+  "config_label": null,
+  "llm_model": null,
+  "dm_model": "vllm-sr/d3-flash",
+  "prompt_version": "dm-questions-v1",
+  "outcomes": {
+    "ok": 3
+  },
+  "labelled": false,
+  "accuracy": null,
+  "mismatches": null,
+  "confusion": null,
+  "latency_ms": {
+    "avg": 197,
+    "p50": 134,
+    "p95": 326,
+    "wall": 4137
+  },
+  "tokens": {
+    "input": 1414,
+    "output": 0,
+    "total": 1414
+  },
+  "cost_usd": 0,
+  "rows": [
+    {
+      "ticket_id": "TCK-10205",
+      "tags": null,
+      "expected": null,
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "medium"
+      },
+      "category_match": null,
+      "priority_match": null,
+      "dm_confidence": {
+        "category": 0.9964360235923863,
+        "priority": 0.5094441771507263
+      },
+      "latency_ms": 326,
+      "input_tokens": 490,
+      "output_tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "ticket_id": "TCK-10458",
+      "tags": null,
+      "expected": null,
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "technical_bug",
+        "priority": "low"
+      },
+      "category_match": null,
+      "priority_match": null,
+      "dm_confidence": {
+        "category": 0.9923593853614898,
+        "priority": 0.7990911215306739
+      },
+      "latency_ms": 131,
+      "input_tokens": 442,
+      "output_tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "ticket_id": "TCK-10211",
+      "tags": null,
+      "expected": null,
+      "outcome": "ok",
+      "status": 200,
+      "predicted": {
+        "category": "feature_request",
+        "priority": "low"
+      },
+      "category_match": null,
+      "priority_match": null,
+      "dm_confidence": {
+        "category": 0.9930411126653461,
+        "priority": 0.7515820054826697
+      },
+      "latency_ms": 134,
+      "input_tokens": 482,
+      "output_tokens": 0,
+      "cost_usd": 0
+    }
+  ]
+}
