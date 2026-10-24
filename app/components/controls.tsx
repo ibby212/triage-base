@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 
 export type ConfigInfo = {
   llm: { name: string; label: string; model: string }[];
+  dm: { model: string } | null;
 };
+
+export type StrategyName = "llm" | "dm" | "dm+llm";
 
 // Loads the server-side configurations (names and models only, never keys).
 export function useConfigs() {
@@ -13,7 +16,7 @@ export function useConfigs() {
     fetch("/api/configs")
       .then((r) => r.json())
       .then(setInfo)
-      .catch(() => setInfo({ llm: [] }));
+      .catch(() => setInfo({ llm: [], dm: null }));
   }, []);
   return info;
 }
@@ -39,6 +42,40 @@ export function ModelSelect({
           </option>
         ))}
       </select>
+    </label>
+  );
+}
+
+const STRATEGY_LABELS: Record<StrategyName, string> = {
+  llm: "LLM only",
+  dm: "Decision model only",
+  "dm+llm": "Decision model + LLM",
+};
+
+export function StrategySelect({
+  info,
+  value,
+  onChange,
+  disabled,
+}: {
+  info: ConfigInfo | null;
+  value: StrategyName;
+  onChange: (value: StrategyName) => void;
+  disabled?: boolean;
+}) {
+  const dmReady = Boolean(info?.dm);
+  return (
+    <label className="field">
+      Strategy
+      <select value={value} onChange={(e) => onChange(e.target.value as StrategyName)} disabled={disabled}>
+        {(Object.keys(STRATEGY_LABELS) as StrategyName[]).map((s) => (
+          <option key={s} value={s} disabled={s !== "llm" && !dmReady}>
+            {STRATEGY_LABELS[s]}
+            {s !== "llm" && !dmReady ? " (not configured)" : ""}
+          </option>
+        ))}
+      </select>
+      {info?.dm && value !== "llm" && <small>Decision model: {info.dm.model}</small>}
     </label>
   );
 }

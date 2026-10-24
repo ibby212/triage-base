@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { errorMessage, ModelSelect, postJson, useConfigs } from "../components/controls";
+import {
+  errorMessage,
+  ModelSelect,
+  postJson,
+  StrategySelect,
+  useConfigs,
+  type StrategyName,
+} from "../components/controls";
 
 type Row = {
   ticket_id: string;
@@ -21,7 +28,7 @@ type Run = {
   run_id: string;
   dataset: "labelled100" | "all500";
   sample_size: number;
-  strategy: string;
+  strategy: StrategyName;
   llm_model: string | null;
   dm_model: string | null;
   prompt_version: string;
@@ -46,6 +53,7 @@ export default function SmokePage() {
   const info = useConfigs();
   const [dataset, setDataset] = useState<"labelled100" | "all500">("labelled100");
   const [sample, setSample] = useState(10);
+  const [strategy, setStrategy] = useState<StrategyName>("llm");
   const [config, setConfig] = useState("default");
   const [run, setRun] = useState<Run | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +65,7 @@ export default function SmokePage() {
     setError(null);
     setRun(null);
     try {
-      const { ok, status, data } = await postJson("/api/smoke", { dataset, sample, config });
+      const { ok, status, data } = await postJson("/api/smoke", { dataset, sample, strategy, config });
       if (!ok) throw new Error(`${errorMessage(data, "The smoke test failed to start.")} (HTTP ${status})`);
       setRun(data as Run);
     } catch (e) {
@@ -91,7 +99,8 @@ export default function SmokePage() {
             disabled={busy}
           />
         </label>
-        <ModelSelect info={info} value={config} onChange={setConfig} disabled={busy} />
+        <StrategySelect info={info} value={strategy} onChange={setStrategy} disabled={busy} />
+        {strategy !== "dm" && <ModelSelect info={info} value={config} onChange={setConfig} disabled={busy} />}
         <button type="submit" disabled={busy}>
           {busy ? `Running ${sample} tickets...` : "Run smoke test"}
         </button>
