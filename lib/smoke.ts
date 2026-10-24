@@ -21,6 +21,8 @@ export type SmokeRow = {
   predicted: { category: string; priority: string } | null;
   category_match: boolean | null;
   priority_match: boolean | null;
+  // Probability the decision model gave to its own choice (dm and dm+llm only).
+  dm_confidence: { category: number; priority: number } | null;
   latency_ms: number;
   input_tokens: number;
   output_tokens: number;
@@ -124,7 +126,7 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
     if (!input.success) {
       return {
         ...base, outcome: "invalid_request", status: 400, predicted: null,
-        category_match: null, priority_match: null, latency_ms: 0,
+        category_match: null, priority_match: null, dm_confidence: null, latency_ms: 0,
         input_tokens: 0, output_tokens: 0, cost_usd: 0,
       };
     }
@@ -148,6 +150,12 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
         ...base, outcome: "ok", status: 200, predicted,
         category_match: expected ? expected.category === predicted.category : null,
         priority_match: expected ? expected.priority === predicted.priority : null,
+        dm_confidence: result.meta.dm_probabilities
+          ? {
+              category: result.meta.dm_probabilities.category[predicted.category] ?? 0,
+              priority: result.meta.dm_probabilities.priority[predicted.priority] ?? 0,
+            }
+          : null,
         latency_ms: result.meta.latency_ms,
         input_tokens: result.meta.usage.total.input_tokens,
         output_tokens: result.meta.usage.total.output_tokens,
@@ -157,7 +165,7 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
       const appError = error instanceof AppError ? error : new AppError("internal_error");
       return {
         ...base, outcome: appError.code, status: appError.status, predicted: null,
-        category_match: null, priority_match: null,
+        category_match: null, priority_match: null, dm_confidence: null,
         latency_ms: Math.round(performance.now() - t0),
         input_tokens: 0, output_tokens: 0, cost_usd: 0,
       };

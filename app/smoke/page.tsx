@@ -19,6 +19,7 @@ type Row = {
   predicted: { category: string; priority: string } | null;
   category_match: boolean | null;
   priority_match: boolean | null;
+  dm_confidence: { category: number; priority: number } | null;
   latency_ms: number;
   input_tokens: number;
   output_tokens: number;
@@ -119,6 +120,7 @@ export default function SmokePage() {
                 <th>Predicted category</th>
                 {labelled && <th>Expected priority</th>}
                 <th>Predicted priority</th>
+                {run.strategy !== "llm" && <th>DM confidence (cat / pri)</th>}
                 <th>Latency</th>
                 <th>Tokens (in/out)</th>
                 <th>Tags</th>
@@ -137,6 +139,13 @@ export default function SmokePage() {
                   <td>
                     {r.predicted?.priority ?? "—"} <Mark ok={r.priority_match} />
                   </td>
+                  {run.strategy !== "llm" && (
+                    <td>
+                      {r.dm_confidence
+                        ? `${pct(r.dm_confidence.category)} / ${pct(r.dm_confidence.priority)}`
+                        : "—"}
+                    </td>
+                  )}
                   <td>{r.latency_ms} ms</td>
                   <td>
                     {r.input_tokens}/{r.output_tokens}
