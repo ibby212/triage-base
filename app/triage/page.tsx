@@ -20,6 +20,23 @@ type TriageResponse = {
   };
 };
 
+function UsageLine({ label, usage }: { label: string; usage: Usage | null }) {
+  return (
+    <tr>
+      <th>{label}</th>
+      {usage ? (
+        <>
+          <td>{usage.input_tokens}</td>
+          <td>{usage.output_tokens}</td>
+          <td>{usage.total_tokens}</td>
+        </>
+      ) : (
+        <td colSpan={3}>not reported by the provider</td>
+      )}
+    </tr>
+  );
+}
+
 function Probabilities({ values }: { values: Record<string, number> }) {
   return (
     <span className="probs">
@@ -97,6 +114,17 @@ export default function TriagePage() {
             <dd>{result.triage.suggested_action ?? <em className="muted">not written: a decision model only chooses</em>}</dd>
           </dl>
 
+          <h3>Token usage</h3>
+          <table className="table compact">
+            <thead>
+              <tr><th></th><th>Input</th><th>Output</th><th>Total</th></tr>
+            </thead>
+            <tbody>
+              {result.meta.strategy !== "dm" && <UsageLine label={`LLM (${result.meta.llm_model})`} usage={result.meta.usage.llm} />}
+              {result.meta.strategy !== "llm" && <UsageLine label={`DM (${result.meta.dm_model})`} usage={result.meta.usage.dm} />}
+              {result.meta.strategy === "dm+llm" && <UsageLine label="Total" usage={result.meta.usage.total} />}
+            </tbody>
+          </table>
           <p className="muted">
             {result.meta.strategy} · {result.meta.prompt_version} · {result.meta.latency_ms} ms · $
             {result.meta.cost_usd.toFixed(6)}
