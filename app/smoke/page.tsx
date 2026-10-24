@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { errorMessage, postJson } from "../components/controls";
+import { errorMessage, ModelSelect, postJson, useConfigs } from "../components/controls";
 
 type Row = {
   ticket_id: string;
@@ -43,8 +43,10 @@ function Mark({ ok }: { ok: boolean | null }) {
 }
 
 export default function SmokePage() {
+  const info = useConfigs();
   const [dataset, setDataset] = useState<"labelled100" | "all500">("labelled100");
   const [sample, setSample] = useState(10);
+  const [config, setConfig] = useState("default");
   const [run, setRun] = useState<Run | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -55,7 +57,7 @@ export default function SmokePage() {
     setError(null);
     setRun(null);
     try {
-      const { ok, status, data } = await postJson("/api/smoke", { dataset, sample });
+      const { ok, status, data } = await postJson("/api/smoke", { dataset, sample, config });
       if (!ok) throw new Error(`${errorMessage(data, "The smoke test failed to start.")} (HTTP ${status})`);
       setRun(data as Run);
     } catch (e) {
@@ -89,6 +91,7 @@ export default function SmokePage() {
             disabled={busy}
           />
         </label>
+        <ModelSelect info={info} value={config} onChange={setConfig} disabled={busy} />
         <button type="submit" disabled={busy}>
           {busy ? `Running ${sample} tickets...` : "Run smoke test"}
         </button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { errorMessage, postJson } from "./components/controls";
+import { errorMessage, ModelSelect, postJson, useConfigs } from "./components/controls";
 
 type Message = {
   role: "user" | "assistant";
@@ -9,6 +9,8 @@ type Message = {
 };
 
 export default function ChatPage() {
+  const info = useConfigs();
+  const [config, setConfig] = useState("default");
   const [text, setText] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isSending, setIsSending] = useState(false);
@@ -24,7 +26,7 @@ export default function ChatPage() {
     setError(null);
 
     try {
-      const { ok, data } = await postJson("/api/chat", { messages: history });
+      const { ok, data } = await postJson("/api/chat", { messages: history, config });
       if (!ok) throw new Error(errorMessage(data, "Unable to send your message. Please try again."));
       if (typeof data !== "object" || data === null || !("answer" in data) || typeof data.answer !== "string") {
         throw new Error("The server returned an invalid reply. Please try again.");
@@ -45,6 +47,7 @@ export default function ChatPage() {
       <h1>Support chat</h1>
       <p className="muted">The conversation lives in this page only. Reloading clears it.</p>
       <div className="row">
+        <ModelSelect info={info} value={config} onChange={setConfig} disabled={isSending} />
         <button type="button" className="secondary" onClick={() => setMessages([])} disabled={isSending || !messages.length}>
           Clear chat
         </button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { errorMessage, postJson } from "../components/controls";
+import { errorMessage, ModelSelect, postJson, useConfigs } from "../components/controls";
 
 const MAX_TICKET_CHARS = 5000;
 
@@ -49,7 +49,9 @@ function Probabilities({ values }: { values: Record<string, number> }) {
 }
 
 export default function TriagePage() {
+  const info = useConfigs();
   const [ticket, setTicket] = useState("");
+  const [config, setConfig] = useState("default");
   const [result, setResult] = useState<TriageResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -60,7 +62,7 @@ export default function TriagePage() {
     setError(null);
     setResult(null);
     try {
-      const { ok, status, data } = await postJson("/api/triage", { ticket });
+      const { ok, status, data } = await postJson("/api/triage", { ticket, config });
       if (!ok) throw new Error(`${errorMessage(data, "Triage failed. Please try again.")} (HTTP ${status})`);
       setResult(data as TriageResponse);
     } catch (e) {
@@ -76,6 +78,9 @@ export default function TriagePage() {
     <main className="page">
       <h1>Ticket triage</h1>
       <form onSubmit={submit} aria-busy={busy}>
+        <div className="row">
+          <ModelSelect info={info} value={config} onChange={setConfig} disabled={busy} />
+        </div>
         <label htmlFor="ticket">Ticket (subject, blank line, body)</label>
         <textarea
           id="ticket"
