@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Support chat",
-  description: "A simple support ticket chat.",
+  title: "Support triage",
+  description: "Support ticket chat and triage, with LLM and decision-model strategies.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <nav className="nav">
+          <strong>Kestrel Support</strong>
+          <Link href="/">Chat</Link>
+          <Link href="/triage">Triage</Link>
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
