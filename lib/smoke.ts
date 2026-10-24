@@ -50,6 +50,23 @@ export type SmokeRun = {
 };
 
 const CONCURRENCY = 3;
+const RATE_LIMIT_RETRIES = 2;
+
+// Spaces out request starts so a run stays under the provider's requests-per-minute limit.
+function pacer(maxRpm: number) {
+  const interval = maxRpm > 0 ? Math.ceil(60_000 / maxRpm) : 0;
+  let nextSlot = 0;
+  return async () => {
+    if (!interval) return;
+    const now = Date.now();
+    const wait = Math.max(0, nextSlot - now);
+    nextSlot = Math.max(now, nextSlot) + interval;
+    if (wait) await new Promise((r) => setTimeout(r, wait));
+  };
+}
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 async function mapLimit<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
   const results: R[] = new Array(items.length);
   let next = 0;
@@ -83,6 +100,7 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
   const tickets = sample(await loadDataset(dataset), request.sample);
   const labelled = dataset === "labelled100";
   const started = performance.now();
+  const waitTurn = pacer(getLlmConfig(config)?.maxRpm ?? 0);
 
   const rows = await mapLimit(tickets, CONCURRENCY, async (ticket): Promise<SmokeRow> => {
     const expected = labelled && ticket.category && ticket.priority
@@ -102,7 +120,18 @@ export async function runSmokeTest(request: SmokeRequest): Promise<SmokeRun> {
     }
 
     try {
-      const result = await triageTicket(input.data, { route: "smoke", ticketId: ticket.ticket_id, runId });
+      let result;
+      for (let attempt = 0; ; attempt++) {
+        await waitTurn();
+        try {
+          result = await triageTicket(input.data, { route: "smoke", ticketId: ticket.ticket_id, runId });
+          break;
+        } catch (error) {
+          // A rate-limited ticket is retried later instead of being lost from the run.
+          if (!(error instanceof AppError) || error.code !== "rate_limited" || attempt >= RATE_LIMIT_RETRIES) throw error;
+          await sleep(10_000 * (attempt + 1));
+        }
+      }
       const predicted = { category: result.triage.category, priority: result.triage.priority };
       return {
         ...base, outcome: "ok", status: 200, predicted,

@@ -14,6 +14,8 @@ export type LlmConfig = {
   structuredOutput: StructuredOutputMode;
   priceInputPerM: number;
   priceOutputPerM: number;
+  // Free tiers limit requests per minute; the smoke test paces itself below this. 0 = no limit.
+  maxRpm: number;
 };
 
 function num(value: string | undefined): number {
@@ -36,6 +38,7 @@ function readLlmConfig(name: string, prefix: string): LlmConfig | null {
     structuredOutput: env[`${prefix}_STRUCTURED_OUTPUT`] === "prompt" ? "prompt" : "json_schema",
     priceInputPerM: num(env[`${prefix}_PRICE_INPUT_PER_M`]),
     priceOutputPerM: num(env[`${prefix}_PRICE_OUTPUT_PER_M`]),
+    maxRpm: num(env[`${prefix}_MAX_RPM`]),
   };
 }
 
