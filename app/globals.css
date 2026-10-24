@@ -9,10 +9,32 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.chat {
-  max-width: 680px;
-  margin: 48px auto;
-  padding: 24px;
+.page {
+  max-width: 760px;
+  margin: 32px auto;
+  padding: 0 24px 48px;
+}
+
+.page.wide {
+  max-width: 1280px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 14px 24px;
+  background: #182235;
+  color: white;
+}
+
+.nav a {
+  color: #cfe0ff;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
 }
 
 .messages {
@@ -75,4 +97,145 @@ button:disabled {
 
 [role="alert"] {
   color: #a51d25;
+}
+
+.muted {
+  color: #5d6a80;
+}
+
+.warn {
+  color: #a51d25;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+}
+
+select,
+input {
+  padding: 8px;
+  border: 1px solid #ccd3df;
+  border-radius: 8px;
+  font: inherit;
+  background: white;
+}
+
+button.secondary {
+  background: white;
+  color: #245dcc;
+}
+
+.row button {
+  justify-self: auto;
+}
+
+.card {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #ccd3df;
+  border-radius: 12px;
+  background: white;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 10px 20px;
+  margin: 0;
+}
+
+.fields dt {
+  font-weight: bold;
+}
+
+.fields dd {
+  margin: 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #e2edff;
+  font-weight: bold;
+}
+
+.badge.high {
+  background: #ffd9d9;
+}
+
+.badge.medium {
+  background: #fff1c7;
+}
+
+.badge.low {
+  background: #dff5e3;
+}
+
+.probs {
+  margin-left: 10px;
+  font-size: 13px;
+  color: #5d6a80;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 14px;
+  margin: 12px 0 24px;
+}
+
+.table th,
+.table td {
+  padding: 6px 10px;
+  border: 1px solid #dde2ea;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table thead th {
+  background: #eef1f6;
+}
+
+.table.compact {
+  width: auto;
+}
+
+.error-row {
+  background: #fff4f4;
+}
+
+.ok {
+  color: #1d7a33;
+  font-weight: bold;
+}
+
+.bad {
+  color: #a51d25;
+  font-weight: bold;
+}
+
+.diag {
+  background: #dff5e3;
+}
+
+.off {
+  background: #ffe3e3;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 24px;
 }

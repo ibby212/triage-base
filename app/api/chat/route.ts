@@ -1,25 +1,17 @@
+import { errorResponse, toAppError } from "@/lib/errors";
+import { parseBody } from "@/lib/http";
+import { chat } from "@/lib/llm";
+import { ChatRequestSchema } from "@/lib/schema";
+
+// The server keeps no memory: the client resends the whole conversation every time.
 export async function POST(request: Request) {
-  let body: unknown;
   try {
-    body = await request.json();
-  } catch {
-    return Response.json({ error: "Invalid JSON body." }, { status: 400 });
+    const { messages, config } = await parseBody(request, ChatRequestSchema);
+    const result = await chat(config, messages);
+    return Response.json({ answer: result.answer, usage: result.usage, model: result.model });
+  } catch (thrown) {
+    const error = toAppError(thrown);
+    if (error.status !== 400) console.error(`[chat] ${error.code}: ${error.detail ?? ""}`);
+    return errorResponse(error);
   }
-
-  if (
-    typeof body !== "object" ||
-    body === null ||
-    !("message" in body) ||
-    typeof body.message !== "string" ||
-    !body.message.trim()
-  ) {
-    return Response.json(
-      { error: "Please provide a non-empty message string." },
-      { status: 400 },
-    );
-  }
-
-  return Response.json({
-    answer: `Hello, you just said: ${body.message}`,
-  });
 }
